@@ -2,6 +2,7 @@
 using BookingApp.Business.Operations.User.Dtos;
 using BookingApp.Business.Types;
 using BookingApp.Data.Entities;
+using BookingApp.Data.Enums;
 using BookingApp.Data.Repositories;
 using BookingApp.Data.UnitOfWork;
 using System;
@@ -45,8 +46,9 @@ namespace BookingApp.Business.Operations.User
                 Email = user.Email,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
-                Password =_protector.Protect(user.Password),
+                Password = _protector.Protect(user.Password),
                 BirthDate = user.BirthDate,
+                UserType = UserType.Customer 
             };
 
             _userRepository.Add(userEntity);
@@ -66,6 +68,45 @@ namespace BookingApp.Business.Operations.User
                 IsSucceed = true
             };
 
+        }
+
+        public ServiceMessage<UserInfoDto> LoginUser(LoginUserDto user)
+        {
+            var userEntity = _userRepository.Get(x => x.Email.ToLower() == user.Email.ToLower());
+
+            if (userEntity is null)
+            {
+                return new ServiceMessage<UserInfoDto>
+                {
+                    IsSucceed = false,
+                    Message = "Kullanici adi veya sifre hatali."
+                };
+            }
+
+            var unprotectedPassword = _protector.UnProtect(userEntity.Password);
+
+            if (unprotectedPassword == user.Password)
+            {
+                return new ServiceMessage<UserInfoDto>
+                {
+                    IsSucceed = true,
+                    Data = new UserInfoDto
+                    {
+                        Email = userEntity.Email,
+                        FirstName = userEntity.FirstName,
+                        LastName = userEntity.LastName,
+                        UserType = userEntity.UserType
+                    }
+                };
+            }
+            else
+            {
+                return new ServiceMessage<UserInfoDto>
+                {
+                    IsSucceed = false,
+                    Message = "Kullanici adi veya sifre hatali."
+                };
+            }
         }
     }
 }

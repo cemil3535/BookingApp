@@ -20,6 +20,6 @@ namespace BookingApp.Business.Types
 
         public string Message { get; set; }
 
-        public T? Date { get; set; }
+        public T? Data { get; set; }
     }
 }

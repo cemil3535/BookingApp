@@ -11,5 +11,7 @@ namespace BookingApp.Business.Operations.User
     public interface IUserService
     {
         Task<ServiceMessage> AddUser(AddUserDto user); // async cunku unit of work kullanilacak
+
+        ServiceMessage<UserInfoDto> LoginUser(LoginUserDto user);
     }
 }
