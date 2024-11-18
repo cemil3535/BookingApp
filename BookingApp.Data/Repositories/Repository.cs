@@ -32,12 +32,22 @@ namespace BookingApp.Data.Repositories
         }
 
 
-        public void Delete(TEntity entity)
+        public void Delete(TEntity entity, bool softDelete = true)
         {
+            if(softDelete)
+            { 
             entity.ModifiedDate = DateTime.Now;
             entity.IsDeleted = true;
             _dbSet.Update(entity);
+            
+            }
+            else
+            {
+                _dbSet.Remove(entity);
+            }
+
             //_db.SaveChanges();
+
         }
 
 

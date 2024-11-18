@@ -1,14 +1,15 @@
 ﻿using BookingApp.Data.Enums;
+using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 
 namespace BookingApp.WebApi.Models
 {
-    public class AddHotelRequest
+    public class UpdateHotelRequest
     {
         [Required]
         public string Name { get; set; }
 
-        public int? Stars {get; set;}
+        public int? Stars { get; set; }
 
         [Required]
         public string Location { get; set; }
@@ -17,8 +18,6 @@ namespace BookingApp.WebApi.Models
         public AccomodationType AccomodationType { get; set; }
 
         public List<int> FeatureIds { get; set; }
-
-        
 
     }
 }

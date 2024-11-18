@@ -1,24 +1,26 @@
 ﻿using BookingApp.Data.Enums;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace BookingApp.WebApi.Models
+namespace BookingApp.Business.Operations.Hotel.Dtos
 {
-    public class AddHotelRequest
+    public class UpdateHotelDto
     {
-        [Required]
+        public int Id { get; set; }
+       
         public string Name { get; set; }
 
-        public int? Stars {get; set;}
+        public int? Stars { get; set; }
 
-        [Required]
         public string Location { get; set; }
 
-        [Required]
         public AccomodationType AccomodationType { get; set; }
 
         public List<int> FeatureIds { get; set; }
-
-        
 
     }
 }

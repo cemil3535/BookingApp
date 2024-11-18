@@ -7,7 +7,6 @@ namespace BookingApp.WebApi.Models
     {
         [Required]
         [Length(5,30)]
-
         public string Title { get; set; }
     }
 }

@@ -14,7 +14,7 @@ namespace BookingApp.Data.Repositories
 
         void Add(TEntity entity);
 
-        void Delete(TEntity entity);
+        void Delete(TEntity entity, bool softDelete = true);
 
         void Delete(int id);
 
