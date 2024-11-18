@@ -28,16 +28,32 @@ namespace BookingApp.Data.Context
             modelBuilder.ApplyConfiguration(new RoomConfiguration());
             modelBuilder.ApplyConfiguration(new UserConfiguration());
 
+
+
+            modelBuilder.Entity<SettingEntity>().HasData(
+                new SettingEntity
+                {
+                    Id = 1,
+                    MaintenenceMode = false
+                });
+
             base.OnModelCreating(modelBuilder);
         }
 
 
         public DbSet<FeatureEntity> Features => Set<FeatureEntity>();
+
         public DbSet<HotelEntity> Hotels => Set<HotelEntity>();
+
         public DbSet<HotelFeatureEntity> HotelFeatures => Set<HotelFeatureEntity>();
+
         public DbSet<ReservationEntity> Reservations => Set<ReservationEntity>();
+
         public DbSet<RoomEntity> Rooms => Set<RoomEntity>();
+
         public DbSet<UserEntity> Users => Set<UserEntity>();
+
+        public DbSet<SettingEntity> Settings => Set<SettingEntity>();
 
     }
 }
