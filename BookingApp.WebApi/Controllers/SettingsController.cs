@@ -18,7 +18,7 @@ namespace BookingApp.WebApi.Controllers
         }
 
         [HttpPatch]
-        [Authorize(Roles = "Admin")]
+        
         public async Task<IActionResult> ToggleMaintenence()
         {
             await _settingService.ToggleMaintenence();
